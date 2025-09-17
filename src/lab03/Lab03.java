@@ -8,7 +8,6 @@ package lab03;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -69,9 +68,53 @@ public class Lab03 extends Application {
         gp.add(clearBtn, 1, 4);
         
         Label message = new Label();
-        gp.add(message, 0, 5);
+        gp.add(message, 1, 5);
         
         registerBtn.setDisable(true);
+        
+        firstTF.setOnKeyTyped(e -> {
+            if (!firstTF.getText().trim().isEmpty()
+                    && !lastTF.getText().trim().isEmpty()
+                    && !emailTF.getText().trim().isEmpty()
+                    && !passwordTF.getText().trim().isEmpty()) {
+                registerBtn.setDisable(false);
+            } else {
+                registerBtn.setDisable(true);
+            }
+        });
+        
+        lastTF.setOnKeyTyped(e -> {
+            if (!firstTF.getText().trim().isEmpty()
+                    && !lastTF.getText().trim().isEmpty()
+                    && !emailTF.getText().trim().isEmpty()
+                    && !passwordTF.getText().trim().isEmpty()) {
+                registerBtn.setDisable(false);
+            } else {
+                registerBtn.setDisable(true);
+            }
+        });
+        
+        emailTF.setOnKeyTyped(e -> {
+            if (!firstTF.getText().trim().isEmpty()
+                    && !lastTF.getText().trim().isEmpty()
+                    && !emailTF.getText().trim().isEmpty()
+                    && !passwordTF.getText().trim().isEmpty()) {
+                registerBtn.setDisable(false);
+            } else {
+                registerBtn.setDisable(true);
+            }
+        });
+        
+        passwordTF.setOnKeyTyped(e -> {
+            if (!firstTF.getText().trim().isEmpty()
+                    && !lastTF.getText().trim().isEmpty()
+                    && !emailTF.getText().trim().isEmpty()
+                    && !passwordTF.getText().trim().isEmpty()) {
+                registerBtn.setDisable(false);
+            } else {
+                registerBtn.setDisable(true);
+            }
+        });
         
         registerBtn.setOnAction(e -> {
             boolean validEmail = false;
@@ -109,6 +152,7 @@ public class Lab03 extends Application {
             lastTF.setText("");
             emailTF.setText("");
             passwordTF.setText("");
+            registerBtn.setDisable(true);
         });
         
         Scene scene = new Scene(root, 400, 300);
@@ -117,5 +161,4 @@ public class Lab03 extends Application {
         primaryStage.setTitle("User Registration Form");
         primaryStage.show();
     }
-    
 }
