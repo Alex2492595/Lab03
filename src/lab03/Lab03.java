@@ -68,7 +68,48 @@ public class Lab03 extends Application {
         gp.add(registerBtn, 0, 4);
         gp.add(clearBtn, 1, 4);
         
+        Label message = new Label();
+        gp.add(message, 0, 5);
+        
         registerBtn.setDisable(true);
+        
+        registerBtn.setOnAction(e -> {
+            boolean validEmail = false;
+            boolean passwordDigit = false;
+            boolean passwordLetter = false;
+            
+            if (emailTF.getText().contains("@")) {
+                validEmail = true;
+            }
+            
+            for (int i = 0; i < passwordTF.getText().length(); i++) {
+                if (passwordTF.getText().charAt(i) <= 90 && passwordTF.getText().charAt(i) >= 65
+                        || passwordTF.getText().charAt(i) <= 122 && passwordTF.getText().charAt(i) >= 97) {
+                    passwordLetter = true;
+                }
+                
+                if (passwordTF.getText().charAt(i) <= 57 && passwordTF.getText().charAt(i) >= 48) {
+                    passwordDigit = true;
+                }
+            }
+            
+            if (validEmail && passwordDigit && passwordLetter) {
+                message.setText("Welcome!");
+            } else if (!validEmail) {
+                message.setText("Error: Invalid email.");
+            } else if (!passwordDigit) {
+                message.setText("Error: Password must contain 1 digit.");
+            } else if (!passwordLetter) {
+                message.setText("Error: Password must contain 1 letter.");
+            }
+        });
+        
+        clearBtn.setOnAction(e -> {
+            firstTF.setText("");
+            lastTF.setText("");
+            emailTF.setText("");
+            passwordTF.setText("");
+        });
         
         Scene scene = new Scene(root, 400, 300);
         
